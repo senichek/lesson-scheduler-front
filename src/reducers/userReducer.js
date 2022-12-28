@@ -1,10 +1,11 @@
-import { SET_USER } from "../store/actions";
+import { SET_USER, CHANGE_INPUT_VALUE } from "../store/actions";
 
 export const initialState = {
     logged: false,
     name: '',
     id: '',
     email: '',
+    password: '',
     token: '',
     role: '',
     showSignUpSuccessMessage: false,
@@ -19,10 +20,15 @@ const userReducer = (state = initialState, action = {}) => {
             ...state,
             logged: true,
             name: action.payload.name,
-            token: action.payload.token,
+            token: action.payload.jwtToken,
             id: action.payload.id,
             role: action.payload.role
         };
+    case CHANGE_INPUT_VALUE:
+        return {
+            ...state,
+            [action.key]: action.value,
+    };
     default:
         return state;
     }
