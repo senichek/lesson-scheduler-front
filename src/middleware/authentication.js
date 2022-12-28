@@ -1,11 +1,14 @@
+import axios from 'axios';
+import { API_BASE_URL } from '../constants';
+import { LOGIN, setUser, setLoginFailure } from '../store/actions';
 
 const authentication = (store) => (next) => async (action) => {
     switch (action.type) {
-    /* case LOGIN: {
+    case LOGIN: {
         const state = store.getState();
         const { email, password } = state.user;
         try {
-            const { data } = await axios.post(`${API_BASE_URL}/signin`, {
+            const { data } = await axios.post(`${API_BASE_URL}/login`, {
                 email,
                 password,
             });
@@ -18,7 +21,7 @@ const authentication = (store) => (next) => async (action) => {
             store.dispatch(setLoginFailure(true));
         }
         break;
-    } */
+    }
 
     default:
         next(action);
