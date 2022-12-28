@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeInputValue, login } from '../store/actions';
+import { changeInputValue, login } from '../../store/actions';
+import './style.scss';
 
 const Login = () => {
 
@@ -21,9 +22,11 @@ const Login = () => {
 
 return(
     <>
+    <div className="login__header">Lessons Booking</div>
         <form className="login__form" onSubmit={handleFormSubmit}>
-            <div className="login__email_input">
+            <div>
                     <input
+                        className="login__email_input"
                         type="email"
                         required={true}
                         value={email}
@@ -32,8 +35,9 @@ return(
                         name="email"
                     />
             </div>
-            <div className="login__password_input">
+            <div>
                     <input
+                        className="login__password_input"
                         type="password"
                         required={true}
                         value={password}
