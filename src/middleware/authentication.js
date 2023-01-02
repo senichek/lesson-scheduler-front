@@ -12,7 +12,6 @@ const authentication = (store) => (next) => async (action) => {
                 email,
                 password,
             });
-            debugger
             store.dispatch(setUser(data));
             // Store the user in localStorage
             // Local storage only supports string datatype
