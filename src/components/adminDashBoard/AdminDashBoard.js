@@ -8,6 +8,7 @@ import moment from "moment/moment";
 import './style.scss';
 
 import "react-datepicker/dist/react-datepicker.css";
+import TimeSlotList from "../timeSlotList/TimeSlotList";
 
 const AdminDashBoard = () => {
 
@@ -66,6 +67,7 @@ const AdminDashBoard = () => {
             <button className="create_slot__confirm_btn" onClick={confirmDateTime}>Confirm</button>
             </div>
           )}
+          <TimeSlotList />
         </>
     );
 }
