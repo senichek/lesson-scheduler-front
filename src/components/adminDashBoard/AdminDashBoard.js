@@ -5,12 +5,15 @@ import setMinutes from "date-fns/setMinutes";
 import { setStartEnd, createLesson } from "../../store/actions";
 import { useDispatch } from 'react-redux';
 import moment from "moment/moment";
+import './style.scss';
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const AdminDashBoard = () => {
 
     const dispatch = useDispatch();
+
+    const [showDatePicker, setShowDatePicker] = useState(false); // Shows/hides the datetime picker
 
     // https://reactdatepicker.com/#example-filter-times
     const [startDate, setStartDate] = useState(
@@ -29,6 +32,7 @@ const AdminDashBoard = () => {
       };
     
     const confirmDateTime = () => {
+        setShowDatePicker(!showDatePicker); // Close the date picker
         console.log("confirmDateTime was called with the following dates:")
         // Transforming dates into times stamps using https://momentjs.com/
         const start = moment(startDate).format().substring(0, 16);
@@ -40,6 +44,11 @@ const AdminDashBoard = () => {
     }
     return (
         <>
+        <div className="create_slot__container">
+          <button className="create_slot__btn" onClick={() => setShowDatePicker(!showDatePicker)}>Create time slot</button>
+        </div>
+          {showDatePicker && (
+            <div className="create_slot__datepicker_container">
             <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -54,7 +63,9 @@ const AdminDashBoard = () => {
             filterTime={filterPassedTime}
             dateFormat="MMMM d, yyyy h:mm aa"
             />
-            <button onClick={confirmDateTime}>Confirm</button>
+            <button className="create_slot__confirm_btn" onClick={confirmDateTime}>Confirm</button>
+            </div>
+          )}
         </>
     );
 }

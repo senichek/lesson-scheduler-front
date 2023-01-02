@@ -1,0 +1,50 @@
+@use "../../styles/vars";
+
+.create_slot {
+  &__container {
+    background-color: vars.$primary_color;
+    height: 15rem;
+    text-align: center;
+  }
+
+  &__btn {
+    width: 22.5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: vars.$secondary_color;
+    margin-top: 10rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+  }
+
+  &__datepicker_container {
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  &__confirm_btn {
+    width: 17rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: vars.$primary_color;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+  }
+}
+
+// overwrite datepicker appearence a bit
+input {
+  width: 17rem;
+  height: 2rem;
+  border-radius: 5px;
+  border: solid 2px vars.$input_field_border_color;
+  background-color: vars.$input_field_background_color;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+}
