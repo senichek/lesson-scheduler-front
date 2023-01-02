@@ -4,6 +4,7 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const SET_START_END = 'SET_START_END';
 export const CREATE_LESSON = 'CREATE_LESSON';
+export const LOGOUT = 'LOGOUT';
 
 export const setUser = (data) => ({
     type: SET_USER,
@@ -35,3 +36,6 @@ export const createLesson = () => ({
     type: CREATE_LESSON,
 });
 
+export const logout = () => ({
+    type: LOGOUT,
+});
