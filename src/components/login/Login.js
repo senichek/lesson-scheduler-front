@@ -1,10 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputValue, login } from '../../store/actions';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import './style.scss';
 
 const Login = () => {
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     // Passing the input name and its value to Store.
     const onInputChange = (event) => {
@@ -14,6 +18,17 @@ const Login = () => {
     const email = useSelector((state) => state.user.email);
     const password = useSelector((state) => state.user.password);
     const user = useSelector((state) => state.user);
+    const role = useSelector((state) => state.user.role);
+    const isLogged = useSelector((state) => state.user.logged);
+
+    useEffect(() => {
+        if (role === '[ROLE_ADMIN]') {
+            return navigate('/admindashboard');
+        }; 
+        if (role === '[ROLE_USER]') {
+            return navigate('/userdashboard');
+        }
+    }, [isLogged]);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -49,7 +64,7 @@ return(
             <button className='login__button' type="submit">Login</button>
         </form>
         <div>
-            The logged-in user is:
+            The logged-in user is (delete later):
             <div>{user.id}</div>
             <div>{user.name}</div>
             <div>{user.role}</div>
