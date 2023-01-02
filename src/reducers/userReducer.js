@@ -1,4 +1,4 @@
-import { SET_USER, CHANGE_INPUT_VALUE, LOGOUT } from "../store/actions";
+import { SET_USER, CHANGE_INPUT_VALUE, LOGOUT, SET_LESSONS } from "../store/actions";
 
 export const initialState = {
     logged: false,
@@ -29,6 +29,12 @@ const userReducer = (state = initialState, action = {}) => {
             ...state,
             [action.key]: action.value,
     };
+    case SET_LESSONS:
+        return {
+            ...state,
+            //lessons: [...state.lessons, action.payload] - this will put array into another array
+            lessons: action.payload
+        };
     case LOGOUT:
         return initialState;
     default:
