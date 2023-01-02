@@ -1,4 +1,4 @@
-import { SET_USER, CHANGE_INPUT_VALUE } from "../store/actions";
+import { SET_USER, CHANGE_INPUT_VALUE, LOGOUT } from "../store/actions";
 
 export const initialState = {
     logged: false,
@@ -29,6 +29,8 @@ const userReducer = (state = initialState, action = {}) => {
             ...state,
             [action.key]: action.value,
     };
+    case LOGOUT:
+        return initialState;
     default:
         return state;
     }

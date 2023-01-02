@@ -30,10 +30,12 @@ const AdminDashBoard = () => {
     
     const confirmDateTime = () => {
         console.log("confirmDateTime was called with the following dates:")
-        console.log(moment(startDate).format());
-        console.log(moment(endDate).format());
         // Transforming dates into times stamps using https://momentjs.com/
-        dispatch(setStartEnd(moment(startDate).format(), moment(endDate).format()));
+        const start = moment(startDate).format().substring(0, 16);
+        const end = moment(endDate).format().substring(0, 16);
+        console.log(start);
+        console.log(end);
+        dispatch(setStartEnd(start, end));
         dispatch(createLesson());
     }
     return (

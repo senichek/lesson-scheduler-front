@@ -5,6 +5,7 @@ import { setUser } from './store/actions';
 import './App.css';
 import AdminDashBoard from './components/adminDashBoard/AdminDashBoard';
 import Login from './components/login/Login';
+import Header from './components/header/Header';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
   })
   
   return (
-    <>    
+    <>
+      <Header /> 
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/admindashboard' element={<AdminDashBoard />} />
