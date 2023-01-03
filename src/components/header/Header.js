@@ -1,11 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "../../store/actions";
+import './style.scss';
 
 const Header = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const role = useSelector((state) => state.user.role);
 
     const handleLogout = () => {
         localStorage.removeItem("loggedInUser");
@@ -15,7 +18,20 @@ const Header = () => {
     }
 
     return (
-        <NavLink className='my-account__signout' to="/" onClick={handleLogout} >Logout</NavLink>
+        <div className="header_container">
+            <div className="header__logo">Lessons Booking</div>
+            <div className="header__navlinks">
+                <NavLink className='header__about nav' to="/about" >About</NavLink>
+                {role === "[ROLE_ADMIN]" &&
+                    <NavLink className='header__dashboard nav' to="/admindashboard" >Dashboard</NavLink>
+                }
+                {role === "[ROLE_USER]" &&
+                    <NavLink className='header__dashboard nav' to="/userdashboard" >Dashboard</NavLink>
+                }
+                <NavLink className='header__profile nav' to="/profile" >Profile</NavLink>
+                <NavLink className='header__logout nav' to="/" onClick={handleLogout} >Logout</NavLink>
+            </div>
+        </div>
     )
 }
 

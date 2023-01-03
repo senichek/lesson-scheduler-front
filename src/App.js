@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes, useLocation } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/actions';
@@ -13,6 +13,7 @@ import Header from './components/header/Header';
 function App() {
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -25,7 +26,9 @@ function App() {
   
   return (
     <>
-      <Header /> 
+      {location.pathname !== "/" &&
+        <Header />
+      } 
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/admindashboard' element={<AdminDashBoard />} />

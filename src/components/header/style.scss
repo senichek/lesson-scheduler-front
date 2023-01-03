@@ -1,0 +1,40 @@
+@use '../../styles/vars';
+
+.header_container {
+    background-color: vars.$primary_color;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav:hover {
+    color: rgb(195, 221, 241);
+    transition: 0.2s;
+}
+
+.header {
+    &__logo {
+        padding-left: 1.5rem;
+        padding-top: 0.5rem;
+        color: aliceblue;
+        font-weight: bold;
+        font-size: 1.5rem;
+        font-style: italic;
+        text-decoration: underline;
+    }
+
+    &__navlinks {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 1rem;
+    }
+}
+
+.active {
+    text-decoration: underline;
+}

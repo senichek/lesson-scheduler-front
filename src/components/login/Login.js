@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputValue, login } from '../../store/actions';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import './style.scss';
 
@@ -17,7 +17,6 @@ const Login = () => {
 
     const email = useSelector((state) => state.user.email);
     const password = useSelector((state) => state.user.password);
-    const user = useSelector((state) => state.user);
     const role = useSelector((state) => state.user.role);
     const isLogged = useSelector((state) => state.user.logged);
 
@@ -63,13 +62,6 @@ return(
             </div>
             <button className='login__button' type="submit">Login</button>
         </form>
-        <div>
-            The logged-in user is (delete later):
-            <div>{user.id}</div>
-            <div>{user.name}</div>
-            <div>{user.role}</div>
-            <div>{user.token}</div>
-        </div>
     </>
 )
 }
