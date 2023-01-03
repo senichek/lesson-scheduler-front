@@ -7,6 +7,7 @@ export const CREATE_LESSON = 'CREATE_LESSON';
 export const LOGOUT = 'LOGOUT';
 export const GET_LESSONS = 'GET_LESSONS';
 export const SET_LESSONS = 'SET_LESSONS';
+export const DELETE_LESSON = 'DELETE_LESSON';
 
 export const setUser = (data) => ({
     type: SET_USER,
@@ -49,4 +50,9 @@ export const getLessons = () => ({
 export const setLessons = (data) => ({
     type: SET_LESSONS,
     payload: data
+});
+
+export const deleteLesson = (id) => ({
+    type: DELETE_LESSON,
+    payload: id
 });
