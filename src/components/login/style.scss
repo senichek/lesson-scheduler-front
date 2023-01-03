@@ -5,7 +5,7 @@
     &__header {
         width: 100%;
         height: 10rem;
-        background-color: vars.$primary_color;
+        background-color: vars.$primary_color_transparent;
         color: aliceblue;
         text-align: center;
         padding-top: 1rem;
@@ -33,7 +33,7 @@
         width: 22.5rem;
         height: 2.5rem;
         border-radius: 4px;
-        background-color: vars.$primary_color;
+        background-color: vars.$secondary_color;
         margin-top: 0.5rem;
         font-size: 1rem;
         font-weight: bold;
