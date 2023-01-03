@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getLessons } from "../../store/actions";
 import TimeSlot from "../timeSlot/timeSlot";
+import './style.scss';
 
 const TimeSlotList = () => {
   const dispatch = useDispatch();
