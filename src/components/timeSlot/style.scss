@@ -15,6 +15,10 @@
     text-align: end;
   }
 
+  &__delete_btn:hover {
+    cursor: pointer;
+  }
+
   &__times {
     display: flex;
     justify-content: space-around;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from '../constants';
-import { CREATE_LESSON, GET_LESSONS, setLessons } from '../store/actions';
+import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, setLessons } from '../store/actions';
 
 const lessonCRUD = (store) => (next) => async (action) => {
     switch (action.type) {
@@ -54,6 +54,40 @@ const lessonCRUD = (store) => (next) => async (action) => {
         } catch (error) {
             console.log(error);
             //store.dispatch(setLoginFailure(true));
+        }
+        break;
+    }
+    case DELETE_LESSON: {
+        const state = store.getState();
+        const { token } = state.user;
+        try {
+            // action.payload holds the ID of the item we want to delete
+            const { data } = await axios.get(`${API_BASE_URL}/lesson/delete/${action.payload}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            // Remove the deleted lesson (aka timeslot) from the state:
+            // 1. Extract current lessons from state;
+            const { lessons } = state.user;
+            // 2. Filter out the deleted lesson (timeslot) from the collection;
+            const lessonz = lessons.filter(ls => ls.id !== parseInt(action.payload));
+            // 3. Update state
+            store.dispatch(setLessons(lessonz));
+
+            toast.warning(data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+        } catch (error) {
+            console.log(error);
         }
         break;
     }
