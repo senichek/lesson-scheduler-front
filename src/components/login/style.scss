@@ -1,6 +1,6 @@
 @use '../../styles/vars';
 
-.login{
+.login {
 
     &__header {
         width: 100%;
@@ -40,4 +40,58 @@
         color: white;
         border: none;
     }
+}
+
+.hardcoded_details {
+    &__pointer {
+        text-align: center;
+        font-size: 2.5rem;
+        color: vars.$secondary_color;
+        width: 5%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__pointer:hover {
+        cursor: pointer;
+        color: #6babd9;
+        transition: 0.1s;
+    }
+
+    &__admin, &__user {
+        display: block;
+        width: 8.5rem;
+        height: 2.3rem;
+        border-radius: 4px;
+        background-color: vars.$primary_color;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        border: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__user {
+        background-color: vars.$secondary_color;
+    }
+
+    &__description {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-weight: 600;
+        font-style: italic;
+        color: #495591;
+    }
+}
+
+.hardcoded_details_container {
+    background-color: #a1bdd585;
+    max-width: 22rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 1rem;
+    border-radius: 10px;
 }

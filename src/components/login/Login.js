@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputValue, login } from '../../store/actions';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { FaCaretDown } from "react-icons/fa";
 import './style.scss';
 
 const Login = () => {
@@ -9,6 +10,8 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
+
+    const [showHardcoded, setShowHardcoded] = useState(false);
 
     // Passing the input name and its value to Store.
     const onInputChange = (event) => {
@@ -31,6 +34,20 @@ const Login = () => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
+        dispatch(login());
+    }
+
+    // Hardcoded login as admin
+    const loginAsAdmin = () => {
+        dispatch(changeInputValue("email", "prof@gmail.com"));
+        dispatch(changeInputValue("password", "pass111"));
+        dispatch(login());
+    }
+
+    // Hardcoded login as user
+    const loginAsUser = () => {
+        dispatch(changeInputValue("email", "std_one@gmail.com"));
+        dispatch(changeInputValue("password", "pass111"));
         dispatch(login());
     }
 
@@ -62,6 +79,16 @@ return(
             </div>
             <button className='login__button' type="submit">Login</button>
         </form>
+        
+        <div className="hardcoded_details__pointer" onClick={() => setShowHardcoded(!showHardcoded)}><FaCaretDown /></div>
+        {showHardcoded &&
+            <div className="hardcoded_details_container">
+            <div className="hardcoded_details__description">Two hard-coded users just for testing purposes</div>
+            <button className="hardcoded_details__admin" onClick={loginAsAdmin}>Admin</button>
+            <button className="hardcoded_details__user" onClick={loginAsUser}>User</button>
+        </div>
+        }
+        
     </>
 )
 }
