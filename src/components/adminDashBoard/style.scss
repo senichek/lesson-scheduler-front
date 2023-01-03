@@ -2,13 +2,13 @@
 
 .create_slot {
   &__container {
-    background-color: vars.$primary_color;
+    background-color: vars.$primary_color_transparent;
     height: 15rem;
     text-align: center;
   }
 
   &__btn {
-    width: 22.5rem;
+    width: 15.5rem;
     height: 2.5rem;
     border-radius: 4px;
     background-color: vars.$secondary_color;
