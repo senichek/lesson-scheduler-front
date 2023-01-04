@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from '../constants';
-import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_UNRESERVED_LESSONS, setLessons } from '../store/actions';
+import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_UNRESERVED_LESSONS, RESERVE_LESSON, setLessons } from '../store/actions';
 
 const lessonCRUD = (store) => (next) => async (action) => {
     switch (action.type) {
@@ -28,6 +28,15 @@ const lessonCRUD = (store) => (next) => async (action) => {
             }
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
         break;
     }
@@ -44,7 +53,15 @@ const lessonCRUD = (store) => (next) => async (action) => {
             store.dispatch(setLessons(data));
         } catch (error) {
             console.log(error);
-            //store.dispatch(setLoginFailure(true));
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
         break;
     }
@@ -61,6 +78,15 @@ const lessonCRUD = (store) => (next) => async (action) => {
             store.dispatch(setLessons(data));
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
         break;
     }
@@ -83,7 +109,40 @@ const lessonCRUD = (store) => (next) => async (action) => {
             // 3. Update state
             store.dispatch(setLessons(lessonz));
 
-            toast.warning(data, {
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        break;
+    }
+    case RESERVE_LESSON: {
+        const state = store.getState();
+        const { token } = state.user;
+        try {
+            // action.payload holds the ID of the item we want to reserve
+            const { data } = await axios.get(`${API_BASE_URL}/lesson/reserve/${action.payload}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            // Remove the reserved lesson, otherwise it will be visible and lead to the confusion:
+            // 1. Extract current lessons from state;
+            const { lessons } = state.user;
+            // 2. Filter out the reserved lesson (timeslot) from the collection;
+            const lessonz = lessons.filter(ls => ls.id !== parseInt(action.payload));
+            // 3. Update state
+            store.dispatch(setLessons(lessonz));
+
+            toast.success(`The slot ${data.id} has been booked`, {
                 position: "bottom-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -95,6 +154,15 @@ const lessonCRUD = (store) => (next) => async (action) => {
 
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
         break;
     }

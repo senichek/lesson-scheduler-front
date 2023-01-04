@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 import moment from "moment/moment";
 import { useSelector } from 'react-redux';
 import './style.scss';
-import { FaTrash } from "react-icons/fa";
-import { deleteLesson } from '../../store/actions';
+import { FaTrash, FaCheckCircle } from "react-icons/fa";
+import { deleteLesson, reserveLesson } from '../../store/actions';
 import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useState } from 'react';
+import Modal from 'react-modal';
 
-const TimeSlot = ({start, end, id}) => {
+const TimeSlot = ({start, end, id, reserved}) => {
 
     const role = useSelector((state) => state.user.role);
 
@@ -22,11 +25,40 @@ const TimeSlot = ({start, end, id}) => {
       dispatch(deleteLesson(slotId));
     }
 
+    const handleSlotReservation = (slotId) => {
+      setIsOpen(false);
+      console.log(`Reserving slot id ${slotId}`);
+      dispatch(reserveLesson(slotId));
+    }
+
+    // Modal pop-up styles
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: '#8a729b26'
+      },
+    };
+
+    Modal.setAppElement('#root');
+
+    // It controls the modal display
+    const [modalIsOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="timeslot" id={id}>
+    <>
+    {/* If the timeslot is reserved we mark it by adding the corresponding classname */}
+    <div className={`timeslot ${reserved ? "reserved" : ""}`} id={id} >
       {/* Delete button is only available to Admins */}
       {role === '[ROLE_ADMIN]' &&
         <div className="timeslot__delete_btn"><FaTrash onClick={handleTimeSlotDelete} id={id} /></div>
+      }
+      {role === '[ROLE_USER]' &&
+        <div className="timeslot__reserve_btn"><FaCheckCircle onClick={() => setIsOpen(true)} id={id} /></div>
       }
         <div className="timeslot__date">{day}</div>
         <div className="timeslot__times">
@@ -34,6 +66,20 @@ const TimeSlot = ({start, end, id}) => {
             <div className="timeslot__to">{endTime}</div>
         </div>
     </div>
+    <Modal
+        isOpen={modalIsOpen}
+        /* onAfterOpen={afterOpenModal} */
+        onRequestClose={() => setIsOpen(false)}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div>Are you sure you want to book this slot?</div>
+        <div className="timeslot__modal_btn_container">
+          <button className="timeslot__confirm_btn" onClick={() => handleSlotReservation(id)}>confirm</button>
+          <button className="timeslot__close_btn" onClick={() => setIsOpen(false)}>close</button>
+        </div>
+      </Modal>
+    </>
   )
 };
 
