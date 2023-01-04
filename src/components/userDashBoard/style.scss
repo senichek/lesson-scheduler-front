@@ -1,0 +1,29 @@
+@use "../../styles/vars";
+
+.description {
+  &__container {
+    background-color: vars.$primary_color_transparent;
+    height: 5rem;
+    text-align: center;
+  }
+
+  &__text {
+    color: white;
+    padding-top: 2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+}
+
+// overwrite datepicker appearence a bit
+input {
+  width: 17rem;
+  height: 2rem;
+  border-radius: 5px;
+  border: solid 2px vars.$input_field_border_color;
+  background-color: vars.$input_field_background_color;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+}

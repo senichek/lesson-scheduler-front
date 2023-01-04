@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminDashBoard from './components/adminDashBoard/AdminDashBoard';
 import Login from './components/login/Login';
 import Header from './components/header/Header';
+import UserDashBoard from './components/userDashBoard/UserDashBoard';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/admindashboard' element={<AdminDashBoard />} />
+        <Route path='/userdashboard' element={<UserDashBoard />} />
       </Routes>
       <ToastContainer />
     </>

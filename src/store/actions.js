@@ -6,6 +6,7 @@ export const SET_START_END = 'SET_START_END';
 export const CREATE_LESSON = 'CREATE_LESSON';
 export const LOGOUT = 'LOGOUT';
 export const GET_LESSONS = 'GET_LESSONS';
+export const GET_UNRESERVED_LESSONS = 'GET_UNRESERVED_LESSONS';
 export const SET_LESSONS = 'SET_LESSONS';
 export const DELETE_LESSON = 'DELETE_LESSON';
 
@@ -45,6 +46,10 @@ export const logout = () => ({
 
 export const getLessons = () => ({
     type: GET_LESSONS,
+});
+
+export const getUnreservedLessons = () => ({
+    type: GET_UNRESERVED_LESSONS,
 });
 
 export const setLessons = (data) => ({
