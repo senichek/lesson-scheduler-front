@@ -19,6 +19,23 @@
     cursor: pointer;
   }
 
+  &__modal_btn_container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__reserve_btn {
+    text-align: end;
+  }
+
+  &__confirm_btn, &__close_btn {
+    margin-top: 1rem;
+  }
+
+  &__reserve_btn:hover {
+    cursor: pointer;
+  }
+
   &__times {
     display: flex;
     justify-content: space-around;
@@ -32,3 +49,8 @@
     margin-bottom: 0.2rem;
   }
 }
+
+.reserved {
+  background-color: vars.$has_been_booked_color;
+}
+

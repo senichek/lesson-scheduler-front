@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { FaCheckCircle } from "react-icons/fa";
 import './style.scss';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,7 +13,7 @@ const UserDashBoard = () => {
     return (
         <>
         <div className="description__container">
-          <div className="description__text">Click the time slot to reserve it</div>
+          <div className="description__text">Click  <FaCheckCircle />  to reserve the time slot</div>
         </div>
           <TimeSlotList />
         </>

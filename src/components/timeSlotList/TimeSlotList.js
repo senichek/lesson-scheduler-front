@@ -12,7 +12,6 @@ const TimeSlotList = () => {
   const lessons = useSelector((state) => state.user.lessons);
 
   useEffect(() => {
-    debugger
     // Admin has access to all the lessons/slots
     if (role === '[ROLE_ADMIN]') {
       dispatch(getLessons());
@@ -28,7 +27,7 @@ const TimeSlotList = () => {
     <div className="timeslot_container">
         {/* Create the list of slots only if the array of lessons is not empty */}
         {lessons && 
-            (lessons.map((lesson) => (<TimeSlot start={lesson.dateTimeFrom} end={lesson.dateTimeTo} key={lesson.id} id={lesson.id} />)))
+            (lessons.map((lesson) => (<TimeSlot start={lesson.dateTimeFrom} end={lesson.dateTimeTo} key={lesson.id} id={lesson.id} reserved={lesson.reserved} />)))
         }
     </div>
   )
