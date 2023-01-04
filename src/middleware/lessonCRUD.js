@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from '../constants';
-import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, setLessons } from '../store/actions';
+import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_UNRESERVED_LESSONS, setLessons } from '../store/actions';
 
 const lessonCRUD = (store) => (next) => async (action) => {
     switch (action.type) {
@@ -18,15 +18,6 @@ const lessonCRUD = (store) => (next) => async (action) => {
             });
 
             if (data.id) {
-                toast.success("Time slot has been created", {
-                    position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
                 // If new lesson (aka timeslot) was created successfully we have toupdate our state:
                 // 1. Extract current lessons from state;
                 const { lessons } = state.user;
@@ -54,6 +45,22 @@ const lessonCRUD = (store) => (next) => async (action) => {
         } catch (error) {
             console.log(error);
             //store.dispatch(setLoginFailure(true));
+        }
+        break;
+    }
+    case GET_UNRESERVED_LESSONS: {
+        const state = store.getState();
+        const { token } = state.user;
+        try {
+            const { data } = await axios.get(`${API_BASE_URL}/lesson/all/unreserved`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            store.dispatch(setLessons(data));
+        } catch (error) {
+            console.log(error);
         }
         break;
     }

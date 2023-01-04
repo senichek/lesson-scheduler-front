@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getLessons } from "../../store/actions";
+import { getLessons, getUnreservedLessons } from "../../store/actions";
 import TimeSlot from "../timeSlot/TimeSlot";
 import './style.scss';
 
@@ -8,10 +8,19 @@ const TimeSlotList = () => {
   const dispatch = useDispatch();
 
   const jwt = useSelector((state) => state.user.token);
+  const role = useSelector((state) => state.user.role);
   const lessons = useSelector((state) => state.user.lessons);
 
   useEffect(() => {
-    dispatch(getLessons());
+    debugger
+    // Admin has access to all the lessons/slots
+    if (role === '[ROLE_ADMIN]') {
+      dispatch(getLessons());
+    }
+    // Users can only see the unreserved (available slots)
+    if (role === '[ROLE_USER]') {
+      dispatch(getUnreservedLessons());
+    }
     console.log("Lessons (time slots) >>> ", lessons);
   }, [jwt])
 
