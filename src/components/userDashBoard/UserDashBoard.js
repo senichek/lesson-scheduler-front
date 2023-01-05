@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaBan } from "react-icons/fa";
 import { getUnreservedLessons, getReservedLessons } from '../../store/actions';
 import './style.scss';
 
@@ -25,7 +25,8 @@ const UserDashBoard = () => {
     return (
         <>
         <div className="description__container">
-          <div className="description__text">Click  <FaCheckCircle />  to reserve the time slot</div>
+          {/* <div className="description__text">Click <FaCheckCircle /> or <FaBan /> to reserve the time slot or to cancel the reservation</div> */}
+          <div className="description__text">Click <FaCheckCircle className="description__icons" /> to reserve the time slot or <FaBan className="description__icons" /> to cancel the reservation</div>
         </div>
         <div className="filter_buttons">
         <button className="filter_buttons__available"onClick={showAvailable} >Available</button>

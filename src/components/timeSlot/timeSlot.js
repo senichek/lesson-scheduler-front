@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import moment from "moment/moment";
 import { useSelector } from 'react-redux';
 import './style.scss';
-import { FaTrash, FaCheckCircle } from "react-icons/fa";
-import { deleteLesson, reserveLesson } from '../../store/actions';
+import { FaTrash, FaCheckCircle, FaBan } from "react-icons/fa";
+import { cancelLesson, deleteLesson, reserveLesson } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { useState } from 'react';
@@ -31,6 +31,12 @@ const TimeSlot = ({start, end, id, reserved}) => {
       dispatch(reserveLesson(slotId));
     }
 
+    const handleSlotCancelation = (slotId) => {
+      setCancelationModalIsOpen(false);
+      console.log(`Canceling slot id ${slotId}`);
+      dispatch(cancelLesson(slotId));
+    }
+
     // Modal pop-up styles
     const customStyles = {
       content: {
@@ -48,6 +54,7 @@ const TimeSlot = ({start, end, id, reserved}) => {
 
     // It controls the modal display
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [cancelationModalIsOpen, setCancelationModalIsOpen] = useState(false);
 
   return (
     <>
@@ -57,8 +64,11 @@ const TimeSlot = ({start, end, id, reserved}) => {
       {role === '[ROLE_ADMIN]' &&
         <div className="timeslot__delete_btn"><FaTrash onClick={handleTimeSlotDelete} id={id} /></div>
       }
-      {role === '[ROLE_USER]' &&
+      {(role === '[ROLE_USER]' && !reserved) &&
         <div className="timeslot__reserve_btn"><FaCheckCircle onClick={() => setIsOpen(true)} id={id} /></div>
+      }
+      {(role === '[ROLE_USER]' && reserved) &&
+        <div className="timeslot__reserve_btn"><FaBan onClick={() => setCancelationModalIsOpen(true)} id={id} /></div>
       }
         <div className="timeslot__date">{day}</div>
         <div className="timeslot__times">
@@ -66,17 +76,32 @@ const TimeSlot = ({start, end, id, reserved}) => {
             <div className="timeslot__to">{endTime}</div>
         </div>
     </div>
+    {/* Confirmation modal */}
     <Modal
         isOpen={modalIsOpen}
         /* onAfterOpen={afterOpenModal} */
         onRequestClose={() => setIsOpen(false)}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Reservation modal"
       >
         <div>Are you sure you want to book this slot?</div>
         <div className="timeslot__modal_btn_container">
           <button className="timeslot__confirm_btn" onClick={() => handleSlotReservation(id)}>confirm</button>
           <button className="timeslot__close_btn" onClick={() => setIsOpen(false)}>close</button>
+        </div>
+      </Modal>
+      {/* Cancelation modal */}
+      <Modal
+        isOpen={cancelationModalIsOpen}
+        /* onAfterOpen={afterOpenModal} */
+        onRequestClose={() => setCancelationModalIsOpen(false)}
+        style={customStyles}
+        contentLabel="Cancelation modal"
+      >
+        <div>Are you sure you want to cancel this slot?</div>
+        <div className="timeslot__modal_btn_container">
+          <button className="timeslot__confirm_btn" onClick={() => handleSlotCancelation(id)}>confirm</button>
+          <button className="timeslot__close_btn" onClick={() => setCancelationModalIsOpen(false)}>close</button>
         </div>
       </Modal>
     </>
