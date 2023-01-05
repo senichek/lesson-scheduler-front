@@ -12,7 +12,9 @@
   -moz-box-shadow: 10px 10px 5px 0px rgba(207, 207, 207, 0.75);
 
   &__delete_btn {
-    text-align: end;
+    width: 10%;
+    margin-left: auto;
+    margin-right: 0;
   }
 
   &__delete_btn:hover {
@@ -25,7 +27,9 @@
   }
 
   &__reserve_btn {
-    text-align: end;
+    width: 10%;
+    margin-left: auto;
+    margin-right: 0;
   }
 
   &__confirm_btn, &__close_btn {

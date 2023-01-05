@@ -27,3 +27,27 @@ input {
   padding-left: 1rem;
   font-size: 1rem;
 }
+
+.filter_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  &__available, &__booked {
+    background-color: vars.$secondary_color_transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  &__booked {
+    background-color: vars.$has_been_booked_color;
+  }
+
+  &__available, &__booked:hover {
+    cursor: pointer;
+  }
+}
