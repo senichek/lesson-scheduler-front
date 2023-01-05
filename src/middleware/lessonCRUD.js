@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from '../constants';
-import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_UNRESERVED_LESSONS, RESERVE_LESSON, setLessons } from '../store/actions';
+import { CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_RESERVED_LESSONS, GET_UNRESERVED_LESSONS, RESERVE_LESSON, setLessons } from '../store/actions';
 
 const lessonCRUD = (store) => (next) => async (action) => {
     switch (action.type) {
@@ -70,6 +70,31 @@ const lessonCRUD = (store) => (next) => async (action) => {
         const { token } = state.user;
         try {
             const { data } = await axios.get(`${API_BASE_URL}/lesson/all/unreserved`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            store.dispatch(setLessons(data));
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        break;
+    }
+    case GET_RESERVED_LESSONS: {
+        const state = store.getState();
+        const { token } = state.user;
+        try {
+            const { data } = await axios.get(`${API_BASE_URL}/lesson/all/reserved`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

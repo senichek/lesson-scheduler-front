@@ -10,6 +10,7 @@ export const GET_UNRESERVED_LESSONS = 'GET_UNRESERVED_LESSONS';
 export const SET_LESSONS = 'SET_LESSONS';
 export const DELETE_LESSON = 'DELETE_LESSON';
 export const RESERVE_LESSON = 'RESERVE_LESSON';
+export const GET_RESERVED_LESSONS = 'GET_RESERVED_LESSONS';
 
 export const setUser = (data) => ({
     type: SET_USER,
@@ -66,4 +67,8 @@ export const deleteLesson = (id) => ({
 export const reserveLesson = (id) => ({
     type: RESERVE_LESSON,
     payload: id
+});
+
+export const getReservedLessons = () => ({
+    type: GET_RESERVED_LESSONS,
 });
