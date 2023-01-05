@@ -56,6 +56,7 @@ const AdminDashBoard = () => {
             showTimeSelect
             filterTime={filterPassedTime}
             dateFormat="MMMM d, yyyy h:mm aa"
+            popperPlacement="top"
             />
             <DatePicker
             selected={endDate}
@@ -63,6 +64,7 @@ const AdminDashBoard = () => {
             showTimeSelect
             filterTime={filterPassedTime}
             dateFormat="MMMM d, yyyy h:mm aa"
+            popperPlacement="top"
             />
             <button className="create_slot__confirm_btn" onClick={confirmDateTime}>Confirm</button>
             </div>
