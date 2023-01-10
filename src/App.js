@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from './store/actions';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
@@ -10,6 +10,7 @@ import AdminDashBoard from './components/adminDashBoard/AdminDashBoard';
 import Login from './components/login/Login';
 import Header from './components/header/Header';
 import UserDashBoard from './components/userDashBoard/UserDashBoard';
+import LessonDetailsCard from './components/lessonDetailsCard/LessonDetailsCard';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/admindashboard' element={<AdminDashBoard />} />
         <Route path='/userdashboard' element={<UserDashBoard />} />
+        <Route path='/lessoninfo/:lessonId' element={<LessonDetailsCard />} />
       </Routes>
       <ToastContainer />
     </>

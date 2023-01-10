@@ -20,7 +20,6 @@ const TimeSlotList = () => {
     if (role === '[ROLE_USER]') {
       dispatch(getUnreservedLessons());
     }
-    console.log("Lessons (time slots) >>> ", lessons);
   }, [jwt])
 
   return (

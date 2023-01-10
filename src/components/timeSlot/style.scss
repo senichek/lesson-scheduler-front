@@ -11,6 +11,18 @@
   -webkit-box-shadow: 10px 10px 5px 0px rgba(207, 207, 207, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(207, 207, 207, 0.75);
 
+  &__icons_container {
+    display: flex;
+  }
+
+  &__info_btn {
+    color: white;
+  }
+
+  &__info_btn:hover {
+    cursor: pointer;
+  }
+
   &__delete_btn {
     width: 10%;
     margin-left: auto;
