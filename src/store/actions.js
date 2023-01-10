@@ -13,6 +13,7 @@ export const RESERVE_LESSON = 'RESERVE_LESSON';
 export const GET_RESERVED_LESSONS = 'GET_RESERVED_LESSONS';
 export const CANCEL_LESSON = 'CANCEL_LESSON';
 export const GET_SINGLE_LESSON = 'GET_SINGLE_LESSON';
+export const UPDATE_LESSON_DESCRIPTION = 'UPDATE_LESSON_DESCRIPTION';
 
 export const setUser = (data) => ({
     type: SET_USER,
@@ -83,4 +84,10 @@ export const cancelLesson = (id) => ({
 export const getSingleLesson = (id) => ({
     type: GET_SINGLE_LESSON,
     payload: id
+});
+
+export const updateLessonDescription = (data, id) => ({
+    type: UPDATE_LESSON_DESCRIPTION,
+    payload: data,
+    id
 });

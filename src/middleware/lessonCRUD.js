@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from '../constants';
-import { CANCEL_LESSON, CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_RESERVED_LESSONS, GET_SINGLE_LESSON, GET_UNRESERVED_LESSONS, RESERVE_LESSON, setLessons } from '../store/actions';
+import { CANCEL_LESSON, CREATE_LESSON, DELETE_LESSON, GET_LESSONS, GET_RESERVED_LESSONS, GET_SINGLE_LESSON, GET_UNRESERVED_LESSONS, RESERVE_LESSON, setLessons, UPDATE_LESSON_DESCRIPTION } from '../store/actions';
 
 const lessonCRUD = (store) => (next) => async (action) => {
     switch (action.type) {
@@ -237,6 +237,35 @@ const lessonCRUD = (store) => (next) => async (action) => {
             const lesson = [data];
             store.dispatch(setLessons(lesson));
 
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response.data, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        break;
+    }
+    case UPDATE_LESSON_DESCRIPTION: {
+        const state = store.getState();
+        const { token } = state.user;
+        try {
+            const { data } = await axios.patch(`${API_BASE_URL}/lesson/updatedescription`, {description : action.payload, id: parseInt(action.id)}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            if (data.id) {
+                const lesson = [data];
+                store.dispatch(setLessons(lesson));
+            }
         } catch (error) {
             console.log(error);
             toast.error(error.response.data, {

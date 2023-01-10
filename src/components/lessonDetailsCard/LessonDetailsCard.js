@@ -1,9 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getSingleLesson } from "../../store/actions";
 import { FaPen } from "react-icons/fa";
 import moment from "moment/moment";
+import Modal from 'react-modal';
+import { updateLessonDescription } from "../../store/actions";
 
 import './style.scss';
 
@@ -21,9 +23,14 @@ const LessonDetailsCard = () => {
     // There would be one lesson in the collection
     const lesson = useSelector((state) => state.user.lessons[0]);
 
+    const [description, setDescription] = useState();
+
     useEffect(() => {
         if (jwt) {
-            dispatch(getSingleLesson(lessonId))
+            dispatch(getSingleLesson(lessonId));
+        }
+        if (lesson) {
+            setDescription(lesson.description);
         }
     }, [jwt])
 
@@ -35,6 +42,30 @@ const LessonDetailsCard = () => {
             return navigate('/userdashboard');
         }
     }
+
+    // Modal pop-up styles
+    const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: '#8a729b26'
+        },
+      };
+  
+      Modal.setAppElement('#root');
+  
+      // It controls the modal display
+      const [modalIsOpen, setModalIsOpen] = useState(false);
+
+      const handleEditing = () => {
+        console.log("Editing has been submitted");
+        dispatch(updateLessonDescription(description, lessonId));
+        setModalIsOpen(false);
+      }
 
   return (
     <>
@@ -62,7 +93,9 @@ const LessonDetailsCard = () => {
                     </div>
                     <div className="lessoncard__description" >
                         Description: {lesson.description} &nbsp;
-                        <FaPen className="lessoncard__description_edit_btn"></FaPen>
+                        {role === '[ROLE_ADMIN]' &&
+                            <FaPen className="lessoncard__description_edit_btn" onClick={() => setModalIsOpen(true)}></FaPen>
+                        }
                     </div>
                     {lesson.studentName &&
                         <div className="lessoncard__studentname">
@@ -75,6 +108,30 @@ const LessonDetailsCard = () => {
         <div className="btn_container">
             <button className="goback_btn" onClick={handleGoBack}>Go back</button>
         </div>
+
+        <Modal
+        isOpen={modalIsOpen}
+        /* onAfterOpen={afterOpenModal} */
+        onRequestClose={() => setModalIsOpen(false)}
+        style={customStyles}
+        contentLabel="Description edit modal">
+            <div>
+                <textarea
+                            className="lessoncard__description_input"
+                            type="text"
+                            required={true}
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
+                            name="description"
+                            rows={5}
+                            cols={30}
+                        />
+            </div>
+        <div className="timeslot__modal_btn_container">
+          <button className="timeslot__confirm_btn" onClick={handleEditing}>confirm</button>
+          <button className="timeslot__close_btn" onClick={() => setModalIsOpen(false)}>close</button>
+        </div>
+      </Modal>
     </>
   );
 };
