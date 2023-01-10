@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import moment from "moment/moment";
 import { useSelector } from 'react-redux';
 import './style.scss';
-import { FaTrash, FaCheckCircle, FaBan } from "react-icons/fa";
+import { FaTrash, FaCheckCircle, FaBan, FaInfoCircle } from "react-icons/fa";
 import { cancelLesson, deleteLesson, reserveLesson } from '../../store/actions';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 const TimeSlot = ({start, end, id, reserved}) => {
 
@@ -60,16 +61,19 @@ const TimeSlot = ({start, end, id, reserved}) => {
     <>
     {/* If the timeslot is reserved we mark it by adding the corresponding classname */}
     <div className={`timeslot ${reserved ? "reserved" : ""}`} id={id} >
-      {/* Delete button is only available to Admins */}
-      {role === '[ROLE_ADMIN]' &&
-        <div className="timeslot__delete_btn"><FaTrash onClick={handleTimeSlotDelete} id={id} /></div>
-      }
-      {(role === '[ROLE_USER]' && !reserved) &&
-        <div className="timeslot__reserve_btn"><FaCheckCircle onClick={() => setIsOpen(true)} id={id} /></div>
-      }
-      {(role === '[ROLE_USER]' && reserved) &&
-        <div className="timeslot__reserve_btn"><FaBan onClick={() => setCancelationModalIsOpen(true)} id={id} /></div>
-      }
+        {/* Delete button is only available to Admins */}
+        <div className="timeslot__icons_container">
+          <Link to={`/lessoninfo/${id}`}><FaInfoCircle className="timeslot__info_btn"/></Link>
+        {role === '[ROLE_ADMIN]' &&
+          <div className="timeslot__delete_btn"><FaTrash onClick={handleTimeSlotDelete} id={id} /></div>
+        }
+        {(role === '[ROLE_USER]' && !reserved) &&
+          <div className="timeslot__reserve_btn"><FaCheckCircle onClick={() => setIsOpen(true)} id={id} /></div>
+        }
+        {(role === '[ROLE_USER]' && reserved) &&
+          <div className="timeslot__reserve_btn"><FaBan onClick={() => setCancelationModalIsOpen(true)} id={id} /></div>
+        }
+      </div>
         <div className="timeslot__date">{day}</div>
         <div className="timeslot__times">
             <div className="timeslot__from">{startTime}</div>
