@@ -6,6 +6,7 @@ export const initialState = {
     id: '',
     email: '',
     password: '',
+    passwordConfirm: '',
     token: '',
     role: '',
     showSignUpSuccessMessage: false,

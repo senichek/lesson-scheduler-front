@@ -1,0 +1,50 @@
+@use '../../styles/vars';
+
+.signup {
+
+    &__header {
+        width: 100%;
+        height: 10rem;
+        background-color: vars.$primary_color_transparent;
+        color: aliceblue;
+        text-align: center;
+        padding-top: 1rem;
+        font-size: 5rem;
+        font-weight: 800;
+    }
+
+    &__form {
+        text-align: center;
+        margin-top: 7rem;
+    }
+
+    &__email_input, &__password_input, &__name_input {
+        width: 22rem;
+        height: 2.5rem;
+        border-radius: 5px;
+        border: solid 2px vars.$input_field_border_color;
+        background-color: vars.$input_field_background_color;
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+        font-size: 1rem;
+    }
+
+    &__button {
+        width: 22.5rem;
+        height: 2.5rem;
+        border-radius: 4px;
+        background-color: vars.$secondary_color;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        border: none;
+    }
+
+    &__login_url_container {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 1rem;
+    }
+}

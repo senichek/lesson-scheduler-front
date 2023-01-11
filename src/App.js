@@ -11,6 +11,7 @@ import Login from './components/login/Login';
 import Header from './components/header/Header';
 import UserDashBoard from './components/userDashBoard/UserDashBoard';
 import LessonDetailsCard from './components/lessonDetailsCard/LessonDetailsCard';
+import SignUp from './components/signUp/SignUp';
 
 function App() {
 
@@ -25,17 +26,21 @@ function App() {
           dispatch(setUser(loggedInUser));
       }
   })
+
+  const noHeaderRoutes = [
+    '/',
+    '/signup',
+  ]
   
   return (
     <>
-      {location.pathname !== "/" &&
-        <Header />
-      } 
+      {noHeaderRoutes.indexOf(location.pathname) < 0 && <Header/>}
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/admindashboard' element={<AdminDashBoard />} />
         <Route path='/userdashboard' element={<UserDashBoard />} />
         <Route path='/lessoninfo/:lessonId' element={<LessonDetailsCard />} />
+        <Route path='/signup' element={<SignUp />} />
       </Routes>
       <ToastContainer />
     </>
