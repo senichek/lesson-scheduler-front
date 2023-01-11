@@ -14,6 +14,7 @@ export const GET_RESERVED_LESSONS = 'GET_RESERVED_LESSONS';
 export const CANCEL_LESSON = 'CANCEL_LESSON';
 export const GET_SINGLE_LESSON = 'GET_SINGLE_LESSON';
 export const UPDATE_LESSON_DESCRIPTION = 'UPDATE_LESSON_DESCRIPTION';
+export const SIGN_UP = 'SIGN_UP';
 
 export const setUser = (data) => ({
     type: SET_USER,
@@ -90,4 +91,8 @@ export const updateLessonDescription = (data, id) => ({
     type: UPDATE_LESSON_DESCRIPTION,
     payload: data,
     id
+});
+
+export const signUp = () => ({
+    type: SIGN_UP,
 });

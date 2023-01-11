@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputValue, login } from '../../store/actions';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { FaCaretDown } from "react-icons/fa";
 import './style.scss';
@@ -88,7 +88,9 @@ return(
             <button className="hardcoded_details__user" onClick={loginAsUser}>User</button>
         </div>
         }
-        
+        <div className="login__signup_url_container">
+            <Link to={'/signup'}>Create an account</Link>
+        </div>
     </>
 )
 }
