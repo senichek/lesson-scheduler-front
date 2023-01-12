@@ -12,6 +12,7 @@ import Header from './components/header/Header';
 import UserDashBoard from './components/userDashBoard/UserDashBoard';
 import LessonDetailsCard from './components/lessonDetailsCard/LessonDetailsCard';
 import SignUp from './components/signUp/SignUp';
+import About from './components/about/About';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/userdashboard' element={<UserDashBoard />} />
         <Route path='/lessoninfo/:lessonId' element={<LessonDetailsCard />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/about' element={<About />} />
       </Routes>
       <ToastContainer />
     </>
