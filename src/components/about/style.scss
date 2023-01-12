@@ -1,0 +1,65 @@
+@use "../../styles/vars";
+
+.about_container {
+    display: flex;
+    gap: 2rem;
+    max-width: 61%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    background-color: #8a729b87;
+    padding: 4rem;
+    border-radius: 10px;
+}
+
+.about {
+
+  &__photo {
+    height: 400px;
+    border-radius: 10px;
+  }
+
+  &__info {
+    color: white;
+  }
+
+  &__repos {
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 1110px) {
+    .about_container {
+        font-size: 0.9rem;
+    }
+    .about {
+        &__photo {
+            height: 300px;
+        }
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .about_container {
+        padding: 3rem;
+    }
+
+    .about {
+        &__photo {
+            display: none;
+        }
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .about_container {
+        padding: 1rem;
+        max-width: 85%;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .about_container {
+        font-size: 0.8rem;
+    }
+}
