@@ -64,13 +64,13 @@ const TimeSlot = ({start, end, id, reserved}) => {
         {/* Delete button is only available to Admins */}
         <div className="timeslot__icons_container">
           <Link to={`/lessoninfo/${id}`}><FaInfoCircle className="timeslot__info_btn"/></Link>
-        {role === '[ROLE_ADMIN]' &&
+        {role === 'ADMIN' &&
           <div className="timeslot__delete_btn"><FaTrash onClick={handleTimeSlotDelete} id={id} /></div>
         }
-        {(role === '[ROLE_USER]' && !reserved) &&
+        {(role === 'USER' && !reserved) &&
           <div className="timeslot__reserve_btn"><FaCheckCircle onClick={() => setIsOpen(true)} id={id} /></div>
         }
-        {(role === '[ROLE_USER]' && reserved) &&
+        {(role === 'USER' && reserved) &&
           <div className="timeslot__reserve_btn"><FaBan onClick={() => setCancelationModalIsOpen(true)} id={id} /></div>
         }
       </div>

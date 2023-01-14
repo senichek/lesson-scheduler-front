@@ -1,0 +1,118 @@
+@use "../../styles/vars";
+
+.profile_container {
+  max-width: 1000px;
+  min-width: 260px;
+  margin-left: auto;
+  margin-top: 6rem;
+  margin-right: auto;
+  color: white;
+  padding: 2rem;
+  background-color: vars.$primary_color_transparent;
+}
+
+.profile {
+  &__header {
+    text-transform: uppercase;
+  }
+
+  &__sub_container {
+    margin-bottom: 1rem;
+  }
+
+  &__panel_container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #42364b;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &__info_container {
+    display: flex;
+    background-color: #8a729bba;
+    padding: 1rem;
+    color: #dddddd;
+    font-size: 1.1rem;
+  }
+
+  &__edit_icon:hover {
+    cursor: pointer;
+  }
+
+  &__edit_icon {
+    margin-right: 0.3rem;
+  }
+
+  &__info_name {
+    margin-right: 7rem;
+  }
+
+  &__buttons_container {
+    background-color: #8a729bba;
+  }
+
+  &__save_btn,
+  &__cancel_btn,
+  &__password_submit_btn,
+  &__password_cancel_btn {
+    width: 6rem;
+    height: 2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #42364b;
+    color: white;
+    font-weight: bold;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__save_btn {
+    margin-left: 10.5rem;
+  }
+
+  &__password_form {
+    margin-top: 1rem;
+  }
+}
+
+.editable {
+  border: solid 4px #241e29ba;
+  border-radius: 5px;
+  padding: 0.2rem 1rem;
+  color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .profile_container {
+    font-size: 0.7rem;
+    padding: 1rem;
+  }
+
+  .profile {
+    &__info_container {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    &__buttons_container {
+      display: block;
+    }
+
+    &__save_btn {
+      margin-left: 1rem;
+    }
+
+    &__cancel_btn {
+      margin-right: 1rem;
+    }
+
+    &__save_btn,
+    &__cancel_btn,
+    &__password_submit_btn,
+    &__password_cancel_btn {
+      width: 5rem;
+    }
+  }
+}

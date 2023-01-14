@@ -35,10 +35,10 @@ const LessonDetailsCard = () => {
     }, [jwt])
 
     const handleGoBack = () => {
-        if (role === '[ROLE_ADMIN]') {
+        if (role === 'ADMIN') {
             return navigate('/admindashboard');
         }
-        if (role === '[ROLE_USER]') {
+        if (role === 'USER') {
             return navigate('/userdashboard');
         }
     }
@@ -93,7 +93,7 @@ const LessonDetailsCard = () => {
                     </div>
                     <div className="lessoncard__description" >
                         Description: {lesson.description} &nbsp;
-                        {role === '[ROLE_ADMIN]' &&
+                        {role === 'ADMIN' &&
                             <FaPen className="lessoncard__description_edit_btn" onClick={() => setModalIsOpen(true)}></FaPen>
                         }
                     </div>

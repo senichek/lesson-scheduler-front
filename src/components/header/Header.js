@@ -22,10 +22,10 @@ const Header = () => {
             <div className="header__logo">Lessons Booking</div>
             <div className="header__navlinks">
                 <NavLink className='header__about nav' to="/about" >About</NavLink>
-                {role === "[ROLE_ADMIN]" &&
+                {role === "ADMIN" &&
                     <NavLink className='header__dashboard nav' to="/admindashboard" >Dashboard</NavLink>
                 }
-                {role === "[ROLE_USER]" &&
+                {role === "USER" &&
                     <NavLink className='header__dashboard nav' to="/userdashboard" >Dashboard</NavLink>
                 }
                 <NavLink className='header__profile nav' to="/profile" >Profile</NavLink>
