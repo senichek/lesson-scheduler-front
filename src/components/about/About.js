@@ -1,4 +1,4 @@
-import teacher from "./teacher.jpg";
+import teacher from "./teacher-small.jpg";
 import './style.scss';
 
 const About = () => {

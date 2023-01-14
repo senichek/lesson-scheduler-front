@@ -1,4 +1,4 @@
-import { SET_USER, CHANGE_INPUT_VALUE, LOGOUT, SET_LESSONS } from "../store/actions";
+import { SET_USER, CHANGE_INPUT_VALUE, LOGOUT, SET_LESSONS, SET_UPDATED_DETAILS } from "../store/actions";
 
 export const initialState = {
     logged: false,
@@ -7,6 +7,7 @@ export const initialState = {
     email: '',
     password: '',
     passwordConfirm: '',
+    passwordOld: '',
     token: '',
     role: '',
     showSignUpSuccessMessage: false,
@@ -21,6 +22,7 @@ const userReducer = (state = initialState, action = {}) => {
             ...state,
             logged: true,
             name: action.payload.name,
+            email: action.payload.email,
             token: action.payload.jwtToken,
             id: action.payload.id,
             role: action.payload.role
@@ -38,6 +40,12 @@ const userReducer = (state = initialState, action = {}) => {
         };
     case LOGOUT:
         return initialState;
+    case SET_UPDATED_DETAILS:
+        return {
+            ...state,
+            name: action.payload.name,
+            email: action.payload.email
+        };
     default:
         return state;
     }

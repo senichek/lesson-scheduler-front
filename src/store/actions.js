@@ -15,6 +15,9 @@ export const CANCEL_LESSON = 'CANCEL_LESSON';
 export const GET_SINGLE_LESSON = 'GET_SINGLE_LESSON';
 export const UPDATE_LESSON_DESCRIPTION = 'UPDATE_LESSON_DESCRIPTION';
 export const SIGN_UP = 'SIGN_UP';
+export const DETAILS_UPDATE = 'DETAILS_UPDATE';
+export const SET_UPDATED_DETAILS = 'SET_UPDATED_DETAILS';
+export const PASSWORD_UPDATE = 'PASSWORD_UPDATE';
 
 export const setUser = (data) => ({
     type: SET_USER,
@@ -95,4 +98,17 @@ export const updateLessonDescription = (data, id) => ({
 
 export const signUp = () => ({
     type: SIGN_UP,
+});
+
+export const detailsUpdate = () => ({
+    type: DETAILS_UPDATE,
+});
+
+export const passwordUpdate = () => ({
+    type: PASSWORD_UPDATE,
+});
+
+export const setUpdatedDetails = (data) => ({
+    type: SET_UPDATED_DETAILS,
+    payload: data,
 });

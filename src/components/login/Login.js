@@ -24,10 +24,10 @@ const Login = () => {
     const isLogged = useSelector((state) => state.user.logged);
 
     useEffect(() => {
-        if (role === '[ROLE_ADMIN]') {
+        if (role === 'ADMIN') {
             return navigate('/admindashboard');
         }; 
-        if (role === '[ROLE_USER]') {
+        if (role === 'USER') {
             return navigate('/userdashboard');
         }
     }, [isLogged]);

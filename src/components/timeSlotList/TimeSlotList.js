@@ -13,11 +13,11 @@ const TimeSlotList = () => {
 
   useEffect(() => {
     // Admin has access to all the lessons/slots
-    if (role === '[ROLE_ADMIN]') {
+    if (role === 'ADMIN') {
       dispatch(getLessons());
     }
     // Users can only see the unreserved (available slots)
-    if (role === '[ROLE_USER]') {
+    if (role === 'USER') {
       dispatch(getUnreservedLessons());
     }
   }, [jwt])
