@@ -48,3 +48,24 @@
         margin-top: 1rem;
     }
 }
+
+@media only screen and (max-width: 660px) {
+    .signup {
+        &__header {
+            font-size: 3rem;
+        }
+
+        &__name_input, &__email_input, &__password_input, &__button {
+            width: 20rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .signup {
+    
+        &__name_input, &__email_input, &__password_input, &__button {
+            width: 15rem;
+        }
+    }
+}

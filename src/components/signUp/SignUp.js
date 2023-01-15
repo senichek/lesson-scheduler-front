@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputValue, signUp } from "../../store/actions";
 import { useEffect } from "react";
-import { toast } from 'react-toastify';
 import './style.scss';
 
 const SignUp = () => {
