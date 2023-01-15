@@ -85,3 +85,9 @@
 .goback_btn:hover {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 400px) {
+    .lessoncard {
+        min-width: 10rem;
+    }
+}
