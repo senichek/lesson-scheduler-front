@@ -1,7 +1,7 @@
-import { Route, Routes, useLocation } from 'react-router';
+import { Route, Routes, useLocation, useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from './store/actions';
+import { setUser, logout } from './store/actions';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,20 +14,41 @@ import LessonDetailsCard from './components/lessonDetailsCard/LessonDetailsCard'
 import SignUp from './components/signUp/SignUp';
 import About from './components/about/About';
 import Profile from './components/profile/Profile';
+import { SESSION_DURATION } from './constants';
 
 function App() {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  let navigate = useNavigate();
+
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
   useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-  
      // If there is a logged-in user in the localStorage, we will put it to our State.
         if (loggedInUser) {
           dispatch(setUser(loggedInUser));
       }
   })
+
+  useEffect(() => {
+    //This hook will run every time a user changes the location (route)
+    // on the website. Here we check if the login session has expired by
+    //simply tracking the time bwteen the jwt token creation and the current time.
+    // It must not exceed the value specified in "Constants";
+    if (loggedInUser) {
+        const sessionStart = new Date(loggedInUser.connectedAt);
+        const sessionEnd = new Date();
+
+        const currentSessionLength = sessionEnd - sessionStart;
+        if (currentSessionLength > SESSION_DURATION) {
+            // Logout
+            localStorage.removeItem("loggedInUser");
+            dispatch(logout());
+            return navigate("/");
+        }
+    }
+}, [location]);
 
   const noHeaderRoutes = [
     '/',
