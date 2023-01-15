@@ -4,6 +4,8 @@
     background-color: vars.$primary_color;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
 }
 
 .nav {
@@ -19,8 +21,6 @@
 
 .header {
     &__logo {
-        padding-left: 1.5rem;
-        padding-top: 0.5rem;
         color: aliceblue;
         font-weight: bold;
         font-size: 1.5rem;
@@ -31,10 +31,47 @@
     &__navlinks {
         display: flex;
         gap: 1rem;
-        padding: 1rem 1rem;
     }
 }
 
 .active {
     text-decoration: underline;
+}
+
+.mobile_navigation {
+    display: none;
+}
+
+.hamburger_bars, .hamburger_close {
+    position: absolute;
+    right: 5%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.mobile_navigation .header__navlinks {
+    position: absolute;
+    display: flex;
+    gap: 1rem;
+    top: 47px;
+    flex-direction: column;
+    right: 0px;
+    text-align: center;
+    width: 100%;
+    background-color: #51758fbf;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media only screen and (max-width: 660px) {
+    .desktop_navigation {
+        display: none;
+    }
+
+    .mobile_navigation {
+        display: flex;
+        align-items: center; // align vertically
+    }
 }

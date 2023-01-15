@@ -9,7 +9,7 @@ const About = () => {
             <h1 className="about__header">Welcome to Lesson Booking application!</h1>
             <p className="about__main_text">The website is designed for students to book (reserve) the time 
             slots for private lessons. The website supports only one teacher (one admin) with multiple students. 
-            The teacher (admin) can create (open) time slots and the users (students) can book them (one slot per user). 
+            The teacher (admin) can create (open) time slots and the users (students) can book them. 
             The teacher can also add and modify the description of each time slot (lesson). The students can modify their 
             profile information</p>
             <div className="about__repos">

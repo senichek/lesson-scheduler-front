@@ -11,7 +11,6 @@ const Profile = () => {
     const passwordOld = useSelector((state) => state.user.passwordOld);
     const password = useSelector((state) => state.user.password);
     const passwordConfirm = useSelector((state) => state.user.passwordConfirm);
-    debugger
     const [showPasswordForm, setShowPasswordForm] = useState(false);
     const [showDetailsForm, setShowDetailsForm] = useState(false);
     /* const [passwordOld, setPasswordOld] = useState('');
